@@ -13,10 +13,6 @@
       
       
       
-        <link rel="prev" href="../CMOtools/">
-      
-      
-        <link rel="next" href="../CMtools/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>2️⃣ CTO (Chief Technology Officer) – Desarrollo del E-commerce - JustHub - Reciclar idees, crear nous mons</title>
+        <title>Docker compose - JustHub - Reciclar idees, crear nous mons</title>
       
     
     
@@ -65,11 +61,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#2-cto-chief-technology-officer-desarrollo-del-e-commerce" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2️⃣ CTO (Chief Technology Officer) – Desarrollo del E-commerce
+              Docker compose
             
           </span>
         </div>
@@ -422,19 +413,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -448,7 +437,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Herramientas
@@ -522,19 +511,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../CTOtools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -543,7 +523,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -594,8 +573,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -610,32 +587,161 @@
                   
 
 
-<h1 id="2-cto-chief-technology-officer-desarrollo-del-e-commerce">2️⃣ CTO (Chief Technology Officer) – Desarrollo del E-commerce<a class="headerlink" href="#2-cto-chief-technology-officer-desarrollo-del-e-commerce" title="Permanent link">&para;</a></h1>
-<p>📌 Tareas principales:</p>
-<p>✅ Implementar y gestionar WordPress + WooCommerce. <a href="../docker-compose/">Tutorial para instalarlo con Docker Compose.</a> </p>
-<p>✅ Optimizar rendimiento, seguridad y experiencia de usuario.</p>
-<p>✅ Integrar pasarelas de pago y herramientas de análisis.</p>
-<p>🛠 Herramientas recomendadas:</p>
-<p>📌 🔧 Para desarrollo y gestión del e-commerce:</p>
+  <h1>Docker compose</h1>
+
+<p>Archivo <code>docker-compose.yml</code> para WordPress con WooCommerce, incluyendo MySQL/MariaDB y configuración optimizada para ecommerce:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb:10.6</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wp_db</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_ROOT_PASSWORD}</span>
+<span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_NAME}</span>
+<span class="w">      </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_USER}</span>
+<span class="w">      </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_PASSWORD}</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_data:/var/lib/mysql</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wp_network</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;mysqladmin&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ping&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-h&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="w">  </span><span class="nt">wordpress</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile-wordpress</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wp_app</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db:3306</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_USER}</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_PASSWORD}</span>
+<span class="w">      </span><span class="nt">WORDPRESS_DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_NAME}</span>
+<span class="w">      </span><span class="nt">PHP_MEMORY_LIMIT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512M</span>
+<span class="w">      </span><span class="nt">PHP_UPLOAD_MAX_FILESIZE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64M</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wordpress_data:/var/www/html</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./plugins:/var/www/html/wp-content/plugins</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./themes:/var/www/html/wp-content/themes</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./uploads:/var/www/html/wp-content/uploads</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:80&quot;</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wp_network</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db_data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">wordpress_data</span><span class="p">:</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">wp_network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+</code></pre></div>
+
+<p>Crea un archivo <code>Dockerfile-wordpress</code> para personalizar WordPress:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">wordpress:php8.2-apache</span>
+
+<span class="c"># Instalar dependencias para WooCommerce</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libzip-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libfreetype6-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libjpeg62-turbo-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libpng-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-php-ext-configure<span class="w"> </span>gd<span class="w"> </span>--with-freetype<span class="w"> </span>--with-jpeg<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-php-ext-install<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span><span class="w"> </span>gd<span class="w"> </span>zip<span class="w"> </span>mysqli<span class="w"> </span>pdo_mysql<span class="w"> </span>opcache
+
+<span class="c"># Configuración de PHP para ecommerce</span>
+<span class="k">COPY</span><span class="w"> </span>php.ini<span class="w"> </span>/usr/local/etc/php/conf.d/woocommerce.ini
+</code></pre></div>
+
+<p>Crea un <code>php.ini</code> para optimización:</p>
+<div class="codehilite"><pre><span></span><code><span class="na">memory_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">512M</span>
+<span class="na">upload_max_filesize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">64M</span>
+<span class="na">post_max_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">64M</span>
+<span class="na">max_execution_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">300</span>
+<span class="na">max_input_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">600</span>
+<span class="na">opcache.enable</span><span class="o">=</span><span class="s">1</span>
+<span class="na">opcache.memory_consumption</span><span class="o">=</span><span class="s">128</span>
+<span class="na">opcache.max_accelerated_files</span><span class="o">=</span><span class="s">10000</span>
+<span class="na">opcache.revalidate_freq</span><span class="o">=</span><span class="s">200</span>
+</code></pre></div>
+
+<p>Crea un <code>.env</code> para las variables:</p>
+<div class="codehilite"><pre><span></span><code>DB_ROOT_PASSWORD=your_root_password
+DB_NAME=wordpress
+DB_USER=wpuser
+DB_PASSWORD=wppassword
+</code></pre></div>
+
+<p><strong>Estructura de directorios:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="err">├──</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">Dockerfile</span><span class="o">-</span><span class="n">wordpress</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">php</span><span class="o">.</span><span class="n">ini</span>
+<span class="err">├──</span><span class="w"> </span><span class="o">.</span><span class="n">env</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">plugins</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">themes</span><span class="o">/</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">uploads</span><span class="o">/</span>
+</code></pre></div>
+
+<p><strong>Para iniciar el stack:</strong></p>
+<ol>
+<li>Crea los directorios necesarios:</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>plugins<span class="w"> </span>themes<span class="w"> </span>uploads
+</code></pre></div>
+
+<ol>
+<li>Inicia los contenedores:</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+
+<ol>
+<li>Accede a:</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>http://localhost:8080
+</code></pre></div>
+
+<p><strong>Pasos post-instalación:</strong></p>
+<ol>
+<li>Completar instalación de WordPress</li>
+<li>Instalar plugin WooCommerce</li>
+<li>Configurar permalinks (Settings &gt; Permalinks)</li>
+<li>Habilitar SSL si es necesario (usando reverse proxy)</li>
+</ol>
+<p><strong>Comandos útiles:</strong></p>
 <ul>
-<li>LocalWP (Entorno local para pruebas de WordPress).</li>
-<li>WordPress + WooCommerce (CMS y plataforma de tienda online).</li>
-<li>Elementor (Constructor visual para personalizar la tienda sin código).</li>
-<li>Google PageSpeed Insights (Optimización de rendimiento y carga).</li>
-<li>GTmetrix (Análisis de velocidad y mejoras técnicas).</li>
-<li>Cloudflare (Seguridad y optimización de velocidad con CDN).</li>
+<li>Ver logs: <code>docker-compose logs -f</code></li>
+<li>Detener: <code>docker-compose down</code></li>
+<li>Actualizar: <code>docker-compose pull &amp;&amp; docker-compose up -d</code></li>
 </ul>
-<p>📌 💳 Para métodos de pago y seguridad:</p>
+<p><strong>Recomendaciones para producción:</strong></p>
+<ol>
+<li>Agregar reverse proxy con Nginx/Apache para SSL</li>
+<li>Configurar backups periódicos</li>
+<li>Implementar cache (Redis/Memcached)</li>
+<li>Usar volumen para SSL certificates</li>
+<li>Monitorear recursos con cAdvisor o Portainer</li>
+</ol>
+<p>Este setup incluye:</p>
 <ul>
-<li>Stripe / PayPal (Pasarelas de pago para WooCommerce).</li>
-<li>Wordfence Security (Protección contra ataques y malware en WordPress).</li>
-<li>UpdraftPlus (Copias de seguridad automáticas del e-commerce).</li>
+<li>Última versión de PHP 8.2</li>
+<li>GD Library para manejo de imágenes</li>
+<li>Optimizaciones de rendimiento para WooCommerce</li>
+<li>Volúmenes persistentes para datos</li>
+<li>Configuración de seguridad básica</li>
+<li>Red aislada para los servicios</li>
 </ul>
-<p>📌 📊 Para análisis de tráfico y datos:</p>
-<ul>
-<li>Google Analytics (Seguimiento de visitantes y conversiones).</li>
-<li>Hotjar (Mapas de calor y grabaciones para mejorar la UX).</li>
-</ul>
+<p>¡Asegúrate de modificar las contraseñas en el archivo .env antes de implementar! 🔒</p>
 
 
 
